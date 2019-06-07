@@ -19,7 +19,7 @@ router.post('/service', (req, res) => {
         if(err){
             return err
         }
-        res.send('Service ceated succesfully')
+        res.send('Service ceated successfully')
     })
 });
 

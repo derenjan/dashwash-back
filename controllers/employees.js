@@ -26,7 +26,7 @@ router.post('/employee', (req, res) => {
         if(err){
             return err
         }
-        res.send('Employee ceated succesfully')
+        res.send('Employee ceated successfully')
     })
 });
 

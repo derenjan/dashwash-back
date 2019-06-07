@@ -21,7 +21,7 @@ router.post('/UserList', (req, res) => {
         if(err){
             return err
         }
-        res.send('User List ceated succesfully')
+        res.send('User List ceated successfully')
     })
 });
 

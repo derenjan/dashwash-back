@@ -20,6 +20,11 @@ app.set('view engine', 'ejs');
 let AuthController = require('./controllers/auth');
 app.use('/auth', AuthController);
 
+
+let AddressController = require('./controllers/addressWash');
+app.use('/api', AddressController);
+
+
 let EmployeeController = require('./controllers/employees');
 app.use('/api', EmployeeController);
 
@@ -36,31 +41,11 @@ let ServiceController = require('./controllers/service');
 app.use('/api', ServiceController);
 
 
-const allowedExt = [
-    '.js',
-    '.ico',
-    '.css',
-    '.png',
-    '.jpg',
-    '.woff2',
-    '.woff',
-    '.ttf',
-    '.svg',
-];
-
-// Separating Angular routes
-app.get('*', (req, res) => {
-    fixRoutes(req, res);
-});
-
-fixRoutes = (req, res) => {
-    if (allowedExt.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-        let url = `/var/www/html/secret_south/secret_south_angular/dist/front/${req.url}`;
-        res.sendFile(url);
-    } else {
-        console.log(req.url)
-        res.sendFile(path.join(__dirname, '../../secret_south/secret_south_angular/dist/front/index.html'));
-    }
-};
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'public/index.html'));
+    });
+}
 
 module.exports = app;
