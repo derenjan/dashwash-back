@@ -11,6 +11,7 @@ router.post('/service', (req, res) => {
     let service = new Service(
         {
             userId:req.body.userId,
+            addressName: req.body.addressName,
             serviceName: req.body.serviceName,
             serviceType: req.body.serviceType,
         }
@@ -23,10 +24,12 @@ router.post('/service', (req, res) => {
     })
 });
 
-router.get('/:userId/service', (req, res) => {
+router.get('/:userId/:addressName/service', (req, res) => {
     const userId = req.params.userId;
+    const addressName = req.params.addressName;
     Service.find({
         userId: userId,
+        addressName: addressName,
     }, (error, service) => {
         if (error) {
             return res.status(400);

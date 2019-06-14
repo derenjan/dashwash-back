@@ -23,10 +23,12 @@ router.post('/register', (req, res) => {
             res.send("This email is already registered", 400);
         }else{
             User.create({
-                    name : req.body.name,
-                    email : req.body.email,
-                    password : hashedPassword,
-                    isAdmin: false
+                firstName : req.body.firstName,
+                lastName : req.body.lastName,
+                phone : req.body.phone,
+                email : req.body.email,
+                password : hashedPassword,
+                isAdmin: false
                 },
                 (err, user) => {
                     if (err) return res.status(500).send("There was a problem registering the user.")

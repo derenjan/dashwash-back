@@ -13,6 +13,7 @@ router.post('/employee', (req, res) => {
     let employee = new Employee(
         {
             userId:req.body.userId,
+            addressName: req.body.addressName,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             workDay: req.body.workDay,
@@ -30,11 +31,13 @@ router.post('/employee', (req, res) => {
     })
 });
 
-router.get('/:userId/employee', (req, res) => {
+router.get('/:userId/:addressName/employee', (req, res) => {
     const userId = req.params.userId;
+    const addressName = req.params.addressName;
 
     Employee.find({
         userId: userId,
+        addressName:addressName
     }, (error, employees) => {
         if (error) {
             return res.status(400);

@@ -13,6 +13,7 @@ router.post('/washing', (req, res) => {
     let wash = new Washing(
         {
             userId: req.body.userId,
+            addressName: req.body.addressName,
             spotName: req.body.spotName,
             spotNumber: req.body.spotNumber,
         }
@@ -25,10 +26,12 @@ router.post('/washing', (req, res) => {
     })
 });
 
-router.get('/:userId/washing', (req, res) => {
+router.get('/:userId/:addressName/washing', (req, res) => {
     const userId = req.params.userId;
+    const addressName = req.params.addressName;
     Washing.find({
         userId: userId,
+        addressName: addressName,
     }, (error, wash) => {
         if (error) {
             return res.status(400);
