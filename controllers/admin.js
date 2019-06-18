@@ -32,7 +32,7 @@ router.post('/admin/users/email', (req, res) => {
         service: 'gmail',
         auth: {
             user: 'petrosyankhachatur1@gmail.com',
-            pass: '19xachvard27'
+            pass: ''
         },
         tls: {
             rejectUnauthorized: false
